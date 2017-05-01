@@ -1,7 +1,6 @@
 package hello;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,11 +14,8 @@ public class MainController {
 
     @PostMapping(path="/users")
     @CrossOrigin(origins="http://localhost:4200")
-    public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String email) {
-        User n = new User();
-        n.setName(name);
-        n.setEmail(email);
-        userRepository.save(n);
+    public @ResponseBody String addNewUser (@RequestBody User user) {
+        userRepository.save(user);
         return "Saved";
     }
 
